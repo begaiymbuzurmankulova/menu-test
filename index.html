@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tel-Kaiyn Menu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        .section-container {
+            padding: 20px;
+        }
+
+        .menu-item {
+            background: white;
+            margin: 10px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: calc(33.333% - 20px);
+            box-sizing: border-box;
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        .menu-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .menu-item h3, .menu-item p {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tel-Kaiyn Menu</h1>
+    <div id="menu-container"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuSections = {
+                food: [
+                    {
+                        name: "Manty",
+                        image: "https://media-cdn.tripadvisor.com/media/photo-s/12/96/1d/47/manty.jpg",
+                        price: "$12",
+                        description: "Classic manty with beef meat and onions"
+                    },
+                    {
+                        name: "Lagman",
+                        image: "https://leelalicious.com/wp-content/uploads/2015/03/Lagman-Uzbek-Noodle-Vegetable-Soup.jpg",
+                        price: "$12",
+                        description: "Lagman with beef meat"
+                    },
+                    {
+                        name: "Mastava",
+                        image: "https://i2.wp.com/rusuz.com/wp-content/uploads/2017/09/Mastava-scaled.jpg?fit=1200%2C800&ssl=1",
+                        price: "$8",
+                        description: "Soup with rice, beans, meat"
+                    },
+                    {
+                        name: "Took kuurdak",
+                        image: "https://www.savorynothings.com/wp-content/uploads/2022/05/bbq-chicken-recipe-image-sq.jpg",
+                        price: "$5",
+                        description: "chicken grill"
+                    },
+                    {
+                        name: "Koi Kuurdak",
+                        image: "https://aloorecipes.com/wp-content/uploads/2023/09/Kuurdak-Recipe.jpg",
+                        price: "$5",
+                        description: "Mutton grill"
+                    },
+                    // More food items...
+                ],
+                drinks: [
+                    {
+                        name: "Black Tea",
+                        image: "https://www.healthifyme.com/blog/wp-content/uploads/2023/01/shutterstock_1898025364-1.jpg",
+                        price: "$5",
+                        description: "Tasty tea"
+                    },
+                    {
+                        name: "Green Tea",
+                        image: "https://images.ctfassets.net/e8bhhtr91vp3/mtK66uB4RANFaeshtDSz4/77de7e3f9891a9d2ed1f20086f2b9464/What_is_green_tea.webp?w=1600&q=60",
+                        price: "$5",
+                        description: "Cool green tea."
+                    },
+                    {
+                        name: "Makhabat Tea",
+                        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBf9gViL7BxY0de8GMv9u8vLMjZl___Gr-PGfBH4hipA&s",
+                        price: "$5",
+                        description: "Mixed tea of black and green tea leaves"
+                    },
+                    {
+                        name: "Sherbet",
+                        image: "https://www.swaminarayan.faith/media/2110/peach-apple-apricot-juice.jpg",
+                        price: "$5",
+                        description: "Homemade juice with abricotes and apples"
+                    },
+                    {
+                        name: "Airan",
+                        image: "https://i.obozrevatel.com/food/recipemain/2019/3/18/ayran-3.jpg?size=636x424",
+                        price: "$5",
+                        description: "Mixed tea of black and green tea leaves"
+                    },
+                    // More drinks...
+                ],
+                soups: [
+                    {
+                        name: "Pelmen",
+                        image: "https://cdn.momsdish.com/wp-content/uploads/2012/10/Pelmeni-Soup-Recipe-11.jpg",
+                        price: "$8",
+                        description: "Homemade pelmeni with beef meat"
+                    },
+                    {
+                        name: "Ui Shorpo",
+                        image: "https://ufm.store/upload/Recipes/mQaTHxJgzo8_1.jpg",
+                        price: "$8",
+                        description: "Soup of beef meat"
+                    },
+                    // More soups...
+                ],
+                fish: [
+                    {
+                        name: "Forel 1 kg",
+                        image: "https://media-cdn.tripadvisor.com/media/photo-s/17/bc/2b/47/bbq.jpg",
+                        price: "$45",
+                        description: "Grilled forel with a lemon butter sauce."
+                    },
+                    {
+                        name: "Forel 300 g",
+                        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNSJF7FIQvic8wUnSlo2x3HbDdeFGBQ5u4_cYJOPQ2QJjrqEm1VDelzbEfCEbpAc9aNBo&usqp=CAU",
+                        price: "$15",
+                        description: "Grilled forel with a lemon butter sauce."
+                    },
+                    {
+                        name: "Assorti",
+                        image: "https://nigora.ru/userfls/shop/large/11_forel-zharenaya-na-uglyakh-s-k.webp",
+                        price: "$15",
+                        description: "Grilled forel, 2 manty, 2 chicken kuurdak"
+                    },
+                    // More fish dishes...
+                ],
+            };
+
+            const menuContainer = document.getElementById('menu-container');
+
+            Object.keys(menuSections).forEach(section => {
+                const sectionElement = document.createElement('div');
+                sectionElement.classList.add('section-container');
+                sectionElement.innerHTML = `<h2>${section.charAt(0).toUpperCase() + section.slice(1)}</h2>`;
+
+                menuSections[section].forEach(item => {
+                    const menuItemElement = document.createElement('div');
+                    menuItemElement.classList.add('menu-item');
+                    menuItemElement.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}">
+                        <h3>${item.name}</h3>
+                        <p>${item.price}</p>
+                        <p>${item.description}</p>
+                    `;
+                    sectionElement.appendChild(menuItemElement);
+                });
+
+                menuContainer.appendChild(sectionElement);
+            });
+        });
+    </script>
+</body>
+</html>
